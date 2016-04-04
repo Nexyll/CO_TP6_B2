@@ -69,7 +69,9 @@ public abstract class Composant {
          * @author
 	 */
 	public void dessiner(Ecran e) {
-                
+                for (Composant c : composants){
+                    c.dessiner(e);
+                }
 	}
 
         /**
@@ -84,7 +86,7 @@ public abstract class Composant {
          * @author
 	 */
 	protected void ajouteComposant(Composant c) {
-		
+		composants.add(c);
 	}
 
         protected Composant getParent(){return parent;}
@@ -180,4 +182,5 @@ public abstract class Composant {
 	public int getHauteur() {
 		return this.hauteur;
 	}
+
 }
