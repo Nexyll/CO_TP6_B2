@@ -15,7 +15,8 @@ public class Bouton extends Label {
      * @author
      */
     public void dessiner(Ecran e) {
-	
+	e.traceRectangle(this.getX(), this.getY(), this.getLargeur(), this.getHauteur(), 0xAA);
+        e.traceTexte(getX(), getY(), this.getTexte(), this.getPolice());
     }
 
     @Override
