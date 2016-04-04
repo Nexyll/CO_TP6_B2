@@ -21,7 +21,7 @@ public class CaseCocher extends Label {
         @Override
         protected void clic()
         {
-            
+           
         }
         
         /**
