@@ -31,7 +31,7 @@ public abstract class Composant {
 	 */
 	private Composant parent;
         
-        private Action onClick=null;
+        private Action onClick = null;
         
         /**
          * Un composant peut être visible, ou non
@@ -98,7 +98,13 @@ public abstract class Composant {
 	 */
 	protected Composant chercheComposant(int x, int y) {
             Composant c = null;
-            
+            for(Composant co : composants){
+               if (co.x + co.largeur > x 
+                       && x > co.x 
+                       && co.y + co.hauteur > y 
+                       && y > co.y)
+                   c = co;
+            }
             return c;
 	}
 
@@ -120,7 +126,10 @@ public abstract class Composant {
         protected Composant[] getComposants(String type)
         {
             ArrayList<Composant> liste = new ArrayList<>();
-            
+            for (Composant c : composants){
+                if (c.nomType() == type)
+                    liste.add(c);
+            }
             return liste.toArray(new Composant[0]);
         }
 	/**
@@ -139,7 +148,7 @@ public abstract class Composant {
          * @author
 	 */
 	protected void clic() {
-		
+            onClick.executer();
 	}                
         
         /**
@@ -148,7 +157,11 @@ public abstract class Composant {
          * @author
 	 */
 	public void clic(int x, int y) {
-            
+            Composant c = chercheComposant(x, y);
+            if(c!=null)
+                c.clic();
+            else
+                this.clic();
 	}
 
 	public void setX(int x) {
